@@ -2,12 +2,12 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-# 패키지 파일 복사 및 모든 의존성 설치 (빌드에 devDependencies 필요)
-COPY package*.json ./
+# server 디렉토리의 패키지 파일 복사 및 모든 의존성 설치 (빌드에 devDependencies 필요)
+COPY server/package*.json ./
 RUN npm ci
 
-# 소스 코드 복사
-COPY . .
+# server 디렉토리의 소스 코드 복사
+COPY server/ ./
 
 # TypeScript 빌드
 RUN npm run build
